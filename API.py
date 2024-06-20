@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 AYRSHARE_API_KEY = os.environ.get("AYRSHARE_API_KEY")
 
