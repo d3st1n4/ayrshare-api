@@ -1,15 +1,11 @@
 import requests
 import json
+import sqlalchemy as db
+import pandas as pd
 
 AYRSHARE_API_KEY = os.environ.get("AYRSHARE_API_KEY")
 
 # GET request
-payload = {
-  "post": "Today is a great day!",
-  "platforms": ["twitter"],
-  "mediaUrls": ["https://img.ayrshare.com/012/gb.jpg"],
-}
-
 headers = {
   'Content-Type': 'application/json',
   'Authorization': f'Bearer {AYRSHARE_API_KEY}'
@@ -36,11 +32,6 @@ payload = {
   "mediaUrls": ["https://img.ayrshare.com/012/gb.jpg"],
 }
 
-headers = {
-  'Content-Type': 'application/json',
-  'Authorization': f'Bearer {AYRSHARE_API_KEY}'
-}
-
 url_posts = 'https://app.ayrshare.com/api/post'
       
 r = requests.post(url_posts, json=payload, headers=headers) 
@@ -55,5 +46,15 @@ else:
     print(error_json)
 
 
+# response = requests.get("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty")
+# topStories = response.json()
+# dataframe_name = pd.DataFrame(topStories, columns=["id"])
+# print(dataframe_name)
+
+# engine = db.create_engine('sqlite:///data_base_name.db')
+# dataframe_name.to_sql('table_name', con=engine, if_exists='replace', index=False)
+# with engine.connect() as connection:
+#    query_result = connection.execute(db.text("SELECT * FROM table_name;")).fetchall()
+#    print(pd.DataFrame(query_result))
 
 
