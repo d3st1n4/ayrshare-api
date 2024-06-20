@@ -1,19 +1,33 @@
 import requests
+import json
 
-GOOGLE_FONTS_API_URL = "https://www.googleapis.com/webfonts/v1/webfonts?"
-API_KEY = "AIzaSyBE-k18H7iIsFdq5U7O2bX1tCTAFRjkEUc"
+AYRSHARE_API_KEY = os.environ.get("AYRSHARE_API_KEY")
 
-response = requests.get(GOOGLE_FONTS_API_URL, params={"key": API_KEY})
-fonts_data = response.json()
+payload = {
+  "post": "Today is a great day!",
+  "platforms": ["twitter"],
+  "mediaUrls": ["https://img.ayrshare.com/012/gb.jpg"],
+}
+      
+# Live API Key
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': f'Bearer {AYRSHARE_API_KEY}'
+}
 
-for font in fonts_data["items"]:
-  family_name = font["family"]
-  subsets = font["subsets"]
-  font_version = font["version"]
+url = 'https://app.ayrshare.com/api/post'
+      
+r = requests.post(url, json=payload, headers=headers) 
 
-  print(f"Font family: {family_name}")
-  print(f"Font subsets: {subsets}")
-  print(f"Font version: {", ".join(variants)}\n")
+if r.status_code == 200:
+    print("Post successfully made.")
+    response = r.json()
+    print(response)  # If needed, print the response JSON
+else:
+    print(f"Failed to post: {r.status_code}")
+    error_json = r.json()
+    print(error_json)
+
 
 
 
