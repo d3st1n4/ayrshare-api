@@ -13,8 +13,8 @@ headers = {
 }
 
 url_accounts = 'https://app.ayrshare.com/api/accounts'
-      
-r = requests.get(url_accounts, headers=headers) 
+
+r = requests.get(url_accounts, headers=headers)
 
 if r.status_code == 200:
     print("Account successfully retrived.")
@@ -57,7 +57,6 @@ engine = db.create_engine('sqlite:///data_base_name.db')
 dataframe.to_sql('table_name', con=engine, if_exists='replace', index=False)
 
 with engine.connect() as connection:
-   query_result = connection.execute(db.text("SELECT * FROM table_name;")).fetchall()
-   print(pd.DataFrame(query_result))
-
-
+    query_result = connection.execute
+    (db.text("SELECT * FROM table_name;")).fetchall()
+    print(pd.DataFrame(query_result))
