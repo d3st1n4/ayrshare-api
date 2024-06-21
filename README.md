@@ -1,5 +1,7 @@
 # Ayrshare API Integration Project
 
+![CI](https://github.com/d3st1n4/ayrshare-api/actions/workflows/stylechecker.yaml/badge.svg)
+
 This project demonstrates how to use the Ayrshare API to retrieve account information and post content to Twitter using Python. The code includes both a GET request to fetch account details and a POST request to create a new post on Twitter. Additionally, it incorporates SQL through its addition of the API data to a database.
 ## Project Structure
 
