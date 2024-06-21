@@ -35,7 +35,7 @@ payload = {
 
 url_posts = 'https://app.ayrshare.com/api/post'
 
-r = requests.post(url_posts, json=payload, headers=headers) 
+r = requests.post(url_posts, json=payload, headers=headers)
 
 if r.status_code == 200:
     print("Post successfully made.")
