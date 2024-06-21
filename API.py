@@ -19,7 +19,7 @@ r = requests.get(url_accounts, headers=headers)
 if r.status_code == 200:
     print("Account successfully retrived.")
     response = r.json()
-    print(response) 
+    print(response)
 else:
     print(f"Failed to retrieve account: {r.status_code}")
     error_json = r.json()
@@ -34,7 +34,7 @@ payload = {
 }
 
 url_posts = 'https://app.ayrshare.com/api/post'
-      
+
 r = requests.post(url_posts, json=payload, headers=headers) 
 
 if r.status_code == 200:
