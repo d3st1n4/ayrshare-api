@@ -3,7 +3,6 @@ import json
 import sqlalchemy as db
 import pandas as pd
 import os
-refs/remotes/origin/master
 
 AYRSHARE_API_KEY = os.environ.get("AYRSHARE_API_KEY")
 
@@ -47,16 +46,18 @@ else:
     error_json = r.json()
     print(error_json)
 
+data_dict = {
+  "post": "Today is a great day!",
+  "platforms": ["twitter"],
+  "mediaUrls": ["https://img.ayrshare.com/012/gb.jpg"]
+}
 
-# response = requests.get("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty")
-# topStories = response.json()
-# dataframe_name = pd.DataFrame(topStories, columns=["id"])
-# print(dataframe_name)
+dataframe = pd.DataFrame.from_dict(data_dict)
+engine = db.create_engine('sqlite:///data_base_name.db')
+dataframe.to_sql('table_name', con=engine, if_exists='replace', index=False)
 
-# engine = db.create_engine('sqlite:///data_base_name.db')
-# dataframe_name.to_sql('table_name', con=engine, if_exists='replace', index=False)
-# with engine.connect() as connection:
-#    query_result = connection.execute(db.text("SELECT * FROM table_name;")).fetchall()
-#    print(pd.DataFrame(query_result))
+with engine.connect() as connection:
+   query_result = connection.execute(db.text("SELECT * FROM table_name;")).fetchall()
+   print(pd.DataFrame(query_result))
 
 
