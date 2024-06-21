@@ -40,7 +40,7 @@ r = requests.post(url_posts, json=payload, headers=headers)
 if r.status_code == 200:
     print("Post successfully made.")
     response = r.json()
-    print(response) 
+    print(response)
 else:
     print(f"Failed to post: {r.status_code}")
     error_json = r.json()
