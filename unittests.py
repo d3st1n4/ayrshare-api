@@ -4,7 +4,7 @@ import requests
 import sqlalchemy as db
 import pandas as pd
 import os
-from API import get_account_info, post_tweet, save_to_database  
+from API import get_account_info, post_tweet, save_to_database
 
 
 class TestAPIRequests(unittest.TestCase):
@@ -53,6 +53,7 @@ class TestAPIRequests(unittest.TestCase):
         self.assertEqual(response.status_code, 401)
         self.assertEqual(response.json(), {"error": "unauthorized"})
 
+
 class TestDatabaseOperations(unittest.TestCase):
 
     @patch('API.db.create_engine')  # Patch the create_engine call in API.py
@@ -61,7 +62,8 @@ class TestDatabaseOperations(unittest.TestCase):
         mock_engine = MagicMock()
         mock_connection = MagicMock()
         mock_create_engine.return_value = mock_engine
-        mock_engine.connect.return_value.__enter__.return_value = mock_connection
+        mock_engine.connect.return_value.__enter__
+        .return_value = mock_connection
 
         # Mock the dataframe and query result
         mock_df = MagicMock()
@@ -72,7 +74,7 @@ class TestDatabaseOperations(unittest.TestCase):
             "platforms": ["twitter"],
             "mediaUrls": ["https://img.ayrshare.com/012/gb.jpg"]
         }
-        
+
         result = save_to_database(data_dict, 'data_base_name', 'table_name')
         self.assertIsInstance(result, pd.DataFrame)
 
