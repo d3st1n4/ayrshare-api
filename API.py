@@ -6,6 +6,7 @@ import os
 
 AYRSHARE_API_KEY = os.environ.get("AYRSHARE_API_KEY")
 
+
 # GET request
 # Normal case: valid api key
 # Edge case: invalid api key, no api key
@@ -20,7 +21,7 @@ def get_account_info(api_key):
 
 # POST request
 # Normal case: valid api key and payload
-# Edge case: invalid api key and payload, no api key and/or payload 
+# Edge case: invalid api key and payload, no api key and/or payload
 def post_tweet(api_key, payload):
     headers = {
       'Content-Type': 'application/json',
@@ -38,8 +39,10 @@ def save_to_database(data_dict, db_name, table_name):
     dataframe = pd.DataFrame([data_dict])
     dataframe.to_sql(table_name, con=engine, if_exists='replace', index=False)
     with engine.connect() as connection:
-        query_result = connection.execute(db.text(f"SELECT * FROM {table_name};")).fetchall()
+        query_result = connection.execute
+        (db.text(f"SELECT * FROM {table_name};")).fetchall()
     return pd.DataFrame(query_result)
+
 
 if __name__ == "__main__":
     account_response = get_account_info(AYRSHARE_API_KEY)
@@ -62,8 +65,6 @@ if __name__ == "__main__":
     else:
         print(f"Failed to post: {post_response.status_code}")
         print(post_response.json())
-
+        
     save_result = save_to_database(tweet_payload, 'data_base_name', 'table_name')
     print(save_result)
-
-
