@@ -67,7 +67,8 @@ class TestDatabaseOperations(unittest.TestCase):
 
         # Mock the dataframe and query result
         mock_df = MagicMock()
-        mock_connection.execute.return_value.fetchall.return_value = [("result_row",)]
+        mock_connection.execute.return_value.fetchall.
+        return_value = [("result_row",)]
 
         data_dict = {
             "post": "Today is a great day!",
