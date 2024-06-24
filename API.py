@@ -68,5 +68,6 @@ if __name__ == "__main__":
         print(f"Failed to post: {post_response.status_code}")
         print(post_response.json())
 
-    save_result = save_to_database(tweet_payload, 'data_base_name', 'table_name')
+    save_result = save_to_database
+    (tweet_payload, 'data_base_name', 'table_name')
     print(save_result.to_string())

@@ -8,6 +8,7 @@ from API import get_account_info, post_tweet, save_to_database  # Import functio
 
 class TestAPIRequests(unittest.TestCase):
 
+
     @patch('API.requests.get')  # Patch the requests.get call in API.py
     def test_get_account_info(self, mock_get):
         # Normal case
