@@ -78,5 +78,6 @@ class TestDatabaseOperations(unittest.TestCase):
         result = save_to_database(data_dict, 'data_base_name', 'table_name')
         self.assertIsInstance(result, pd.DataFrame)
 
+
 if __name__ == '__main__':
     unittest.main()
