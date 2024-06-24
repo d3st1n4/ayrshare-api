@@ -35,6 +35,7 @@ def post_tweet(api_key, payload):
 # no data_dict, db_name, and/or table_name
 def save_to_database(data_dict, db_name, table_name):
     engine = db.create_engine(f'sqlite:///{db_name}.db')
+    dataframe = pd.DataFrame([data_dict])
     dataframe.to_sql(table_name, con=engine, if_exists='replace', index=False)
     with engine.connect() as connection:
         query_result = connection.execute(db.text(f"SELECT * FROM {table_name};")).fetchall()
